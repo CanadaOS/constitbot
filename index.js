@@ -5,7 +5,7 @@ const https = require('https');
 const send = require('./fb/send');
 const msg = require('./fb/assemble');
 
-const app = express();
+let app = express();
 app.set('port', process.env.PORT || 5000);
 
 app.get('/webhook', function(req, res) {
