@@ -22,7 +22,7 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
   // var data = req.body;
-  console.log('***webhook data***', JSON.stringify(req.body));
+  console.log('***webhook data***', JSON.stringify(req));
 
 
   /* Ideal State of affairs:
