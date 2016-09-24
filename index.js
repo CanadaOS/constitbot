@@ -21,8 +21,9 @@ app.get('/webhook', function(req, res) {
 });
 
 app.post('/webhook', function (req, res) {
-  var data = req.body;
-  console.log('***webhook data***', JSON.stringify(data));
+  // var data = req.body;
+  console.log('***webhook data***', JSON.stringify(req.body));
+
 
   /* Ideal State of affairs:
      let handleMessage = receive(data).then((event) => { return handleMsgPromise(event) });
@@ -30,27 +31,27 @@ app.post('/webhook', function (req, res) {
   */
 
   // Make sure this is a page subscription
-  if (data.object == 'page') {
-    // Iterate over each entry
-    // There may be multiple if batched
-    data.entry.forEach(function(pageEntry) {
-      var pageID = pageEntry.id;
-      var timeOfEvent = pageEntry.time;
-
-      // Iterate over each messaging event
-      pageEntry.messaging.forEach(function(messagingEvent) {
-        const senderID = messagingEvent.sender.id;
-        send(msg.text('i got u fam')).to(senderID);
-      });
-
-    });
-
-    // Assume all went well.
-    //
-    // You must send back a 200, within 20 seconds, to let us know you've
-    // successfully received the callback. Otherwise, the request will time out.
-    res.sendStatus(200);
-  }
+  // if (data.object == 'page') {
+  //   // Iterate over each entry
+  //   // There may be multiple if batched
+  //   data.entry.forEach(function(pageEntry) {
+  //     var pageID = pageEntry.id;
+  //     var timeOfEvent = pageEntry.time;
+  //
+  //     // Iterate over each messaging event
+  //     pageEntry.messaging.forEach(function(messagingEvent) {
+  //       const senderID = messagingEvent.sender.id;
+  //       send(msg.text('i got u fam')).to(senderID);
+  //     });
+  //
+  //   });
+  //
+  //   // Assume all went well.
+  //   //
+  //   // You must send back a 200, within 20 seconds, to let us know you've
+  //   // successfully received the callback. Otherwise, the request will time out.
+  //   res.sendStatus(200);
+  // }
 });
 
 app.listen(app.get('port'), function() {
