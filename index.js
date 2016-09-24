@@ -1,11 +1,12 @@
 const express = require('express');
+const https = require('https');
 
 const app = express();
 app.set('port', process.env.PORT || 5000);
 
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === VALIDATION_TOKEN) {
+      req.query['hub.verify_token'] === process.env.VALIDATION_TOKEN) {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
 
